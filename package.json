@@ -1,0 +1,19 @@
+{
+  "name": "sfpy-httpclient",
+  "version": "1.0.0",
+  "description": "frontend http client library",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getsafepay/safepay-httpclient.git"
+  },
+  "author": "Safepay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/getsafepay/safepay-httpclient/issues"
+  },
+  "homepage": "https://github.com/getsafepay/safepay-httpclient#readme"
+}
