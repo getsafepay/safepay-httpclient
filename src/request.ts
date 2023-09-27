@@ -1,13 +1,13 @@
 import { Method } from "axios";
-import { Spec } from "./method";
 import SafepayResource from "./resource";
+import { Spec } from "./method";
 import { utils } from "./utils";
 
 type RequestOpts = {
   requestMethod: Method;
   requestPath: string;
   bodyData: { [key: string]: any } | undefined;
-  queryData: { [key: string]: string } | undefined;
+  queryData: { [key: string]: any } | undefined;
   headers: { [key: string]: string } | undefined;
 };
 
@@ -80,8 +80,8 @@ function getRequestOpts(
 
   const headers = Object.assign({}, spec.headers);
   const dataInQuery = spec.method === "GET" || spec.method === "DELETE";
-  let bodyData = dataInQuery ? {} : data;
-  let queryData = dataInQuery ? data : {};
+  let bodyData = dataInQuery ? undefined : data;
+  let queryData = dataInQuery ? data : undefined;
 
   // this check id added because of subscription DELETE wants data in body instead of query
   // will need backend to update

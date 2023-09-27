@@ -1,7 +1,6 @@
 import axios, { Method } from "axios";
 import qs from "qs";
 import { HttpClient } from "./httpClient";
-import { interceptError, interceptResponse } from "../../api";
 
 export class AxiosHttpClient implements HttpClient {
   makeRequest(
@@ -13,7 +12,7 @@ export class AxiosHttpClient implements HttpClient {
     params?: { [key: string]: any }
   ): Promise<any> {
     const instance = axios.create();
-    instance.interceptors.response.use(interceptResponse, interceptError);
+    //instance.interceptors.response.use(interceptResponse, interceptError);
 
     const fetchPromise = instance.request({
       url: `${host}${path}`,

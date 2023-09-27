@@ -1,13 +1,17 @@
-import { ENVIRONMENT } from "../types";
-import { Config, Environment } from "./config";
-import { AxiosHttpClient } from "./net/axiosHttpClient";
-import { HttpClient } from "./net/httpClient";
 import { utils } from "./utils";
 import * as resources from "./resources";
 import SafepayResource from "./resource";
+import { HttpClient } from "./net/httpClient";
+import { Config, Environment } from "./config";
+import { AxiosHttpClient } from "./net/axiosHttpClient";
 
 type ResourceModuleType = typeof resources;
-
+enum ENVIRONMENT {
+  LOCAL = "local",
+  DEVELOPMENT = "development",
+  SANDBOX = "sandbox",
+  PRODUCTION = "production",
+}
 const DEFAULT_BASE_PATH = "/v1/";
 
 export enum Service {

@@ -1,7 +1,6 @@
 import SafepayResource from "../../resource";
 import { safepayMethod } from "../../method";
 import { Service } from "../../safepay";
-import Cookies from "js-cookie";
 
 const SP_USER_TOKEN = "SP_USER_TOKEN";
 export class Subscription extends SafepayResource {
