@@ -5,4 +5,5 @@ export type Config = {
   basePath?: string;
   apiKey?: string;
   sessionToken?: string;
+  secretKey?: string;
 };

@@ -27,6 +27,7 @@ type Api = {
   basePath?: string;
   auth?: string;
   apiKey?: string;
+  secretKey?: string;
   httpClient?: HttpClient;
   services?: { [key in Service]: string };
 };
@@ -57,12 +58,20 @@ export class Safepay {
     this.prepResources();
   }
 
+  private setApiKey(apiKey: string) {
+    this.setApiField("apiKey", apiKey);
+  }
+
   getApiKey(): string | undefined {
     return this.getApiField("apiKey");
   }
 
-  setApiKey(apiKey: string) {
-    this.setApiField("apiKey", apiKey);
+  private setSecretKey(apiKey: string) {
+    this.setApiField("secretKey", apiKey);
+  }
+
+  getSecretKey(): string | undefined {
+    return this.getApiField("secretKey");
   }
 
   private setAuth(session: string) {

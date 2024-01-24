@@ -87,8 +87,8 @@ export default class SafepayResource {
     const defaultHeaders = {
       Authorization: this.safepay.getAuth(),
       Accept: "application/json",
-
       "X-SFPY-Merchant-Key": this.safepay.getApiKey(),
+      "X-SFPY-MERCHANT-SECRET": this.safepay.getSecretKey(),
     };
 
     return Object.assign(
