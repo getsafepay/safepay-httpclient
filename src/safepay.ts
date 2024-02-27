@@ -4,8 +4,9 @@ import SafepayResource from "./resource";
 import { HttpClient } from "./net/httpClient";
 import { Config, Environment } from "./config";
 import { AxiosHttpClient } from "./net/axiosHttpClient";
+import { webhookMethod } from "./method";
 
-type ResourceModuleType = typeof resources;
+export type ResourceModuleType = typeof resources;
 enum ENVIRONMENT {
   LOCAL = "local",
   DEVELOPMENT = "development",
@@ -37,6 +38,8 @@ export class Safepay {
 
   service!: { [key: string]: SafepayResource };
 
+  webhook!: void;
+
   constructor(props: Config) {
     this.api = {};
     this.service = {};
@@ -55,7 +58,8 @@ export class Safepay {
     this.setBasePath(props.basePath || DEFAULT_BASE_PATH);
 
     this.setHttpClient(new AxiosHttpClient());
-    this.prepResources();
+    this.prepResources(props.resources);
+    this.attachWebhook(props.header, props.payload);
   }
 
   private setApiKey(apiKey: string) {
@@ -125,11 +129,17 @@ export class Safepay {
     return this.api[key];
   }
 
-  private prepResources() {
+  private prepResources(resources: ResourceModuleType) {
     for (const name in resources) {
       const resource = resources[name as keyof ResourceModuleType];
       this.service[utils.pascalToCamelCase(name)] = new resource(this);
     }
+  }
+
+  private attachWebhook(header?: { [key: string]: string }, payload?: string) {
+    if (!payload || !header) return;
+    this.webhook = webhookMethod({ payload, header });
+    return this.webhook;
   }
 
   private getBaseUrlFromEnv(env: Environment): string {

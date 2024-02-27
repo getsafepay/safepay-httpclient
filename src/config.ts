@@ -6,4 +6,7 @@ export type Config = {
   apiKey?: string;
   sessionToken?: string;
   secretKey?: string;
+  header?: { [key: string]: string };
+  payload?: string;
+  resources: any;
 };
